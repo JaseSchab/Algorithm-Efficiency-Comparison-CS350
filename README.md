@@ -24,17 +24,20 @@ Our test consisted of us scaling them for the diffrent data types in this order 
 ## Team Contributions
 
 - **Jase**
-  - Implemented merge sort & Collected its Data for Time and Memory
+  - Implemented Merge Sort & Collected its Data for Time and Memory
   - Assisted with discussion and analysis
 
 - **Ray**
-  - Please Write your stuff here
+  -  Programmed and tested bubble sort
+  -  Wrote System Design/Methodology
 
 - **Chloe**
-  - Please Write your stuff here
+  - Implemented Bogo Sort & Collected its Data for Time and Memory
+  - Wrote Background and conclusion portion of paper
 
 - **Doc**
-  - Please Write your stuff here
+  -  Created test files and quicksort code, and tested algorithm
+  -  Wrote Abstract, Introduction, Findings/Test info, editing of overall info
 
 ## Testing
 
@@ -84,7 +87,7 @@ Our test consisted of us scaling them for the diffrent data types in this order 
 - **TestMainMemJase.cpp**
   - Run this for Merge Sort Testing
 
-- **quicksort.cpp**
+- **quicksort.h**
   - Run this for Quick Sort Testing
 
 - **bubblesort.cpp**
