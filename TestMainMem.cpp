@@ -1,4 +1,6 @@
 #include "LibrariesAndFunctionHeadsQsort.h"
+
+
 vector<int> getInts(int size, unsigned seed)
 {
 	mt19937 rng(seed);
@@ -71,21 +73,30 @@ vector<string> getStrings(int size, unsigned seed)
 
 int main(int argc, char* argv[])
 {
-	//Change size variable for different sizes
-	int size = 100000;
+	string dataType = argv[1];
+	int size = stoi(argv[2]);
 
-		//Creation of various testing type vectors
+	//Conditional chain creating and sorting a vector of determined size and type on command line.
+	if (dataType == "int")
+	{
 		vector<int> intVector = getInts(size, 1);
-		vector<float> floatVector = getFloats(size, 1);
-		vector <char> charVector = getChars(size, 1);
-		vector<string> stringVector = getStrings(size, 1);
-
-		//Either change this function name, or change the name of your sorting function
 		quickSort(intVector, 0, size - 1);
-
+	}
+	else if (dataType == "float")
+	{
+		vector<float> floatVector = getFloats(size, 1);
 		quickSort(floatVector, 0, size - 1);
-
+	}
+	else if (dataType == "char")
+	{
+		vector <char> charVector = getChars(size, 1);
 		quickSort(charVector, 0, size - 1);
-
+	}
+	else if (dataType == "string")
+	{
+		vector<string> stringVector = getStrings(size, 1);
 		quickSort(stringVector, 0, size - 1);
+	}
+
+	return 0;
 }
