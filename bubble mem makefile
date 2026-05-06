@@ -1,0 +1,52 @@
+CXX      = g++
+CXXFLAGS = -O0 -g -std=c++17
+SRC      = BubbleMem.cpp
+HEADER   = LibrariesAndFunctionHeads.h
+RESULTS  = results.txt
+
+# All 4 types at exponents 2-5 (100 / 1,000 / 10,000 / 100,000)
+TARGETS = \
+	BubbleMem_int_2    BubbleMem_int_3    BubbleMem_int_4    BubbleMem_int_5    \
+	BubbleMem_float_2  BubbleMem_float_3  BubbleMem_float_4  BubbleMem_float_5  \
+	BubbleMem_char_2   BubbleMem_char_3   BubbleMem_char_4   BubbleMem_char_5   \
+	BubbleMem_string_2 BubbleMem_string_3 BubbleMem_string_4 BubbleMem_string_5
+
+.PHONY: all clean run run_valgrind
+
+all: $(TARGETS)
+
+# All binaries share the same source; type/size are runtime args
+BubbleMem_%: $(SRC) $(HEADER)
+	$(CXX) $(CXXFLAGS) -o $@ $(SRC)
+
+# ── Run all 16 combinations, write results to results.txt ───────────────────
+run: all
+	@echo "Bubble Sort Results" > $(RESULTS)
+	@echo "Generated: $$(date)"                              >> $(RESULTS)
+	@echo "==========================================="       >> $(RESULTS)
+	@echo ""                                                  >> $(RESULTS)
+	@for type in int float char string; do \
+		echo "--- $$type ---"                             >> $(RESULTS); \
+		for exp in 2 3 4 5; do \
+			./BubbleMem_$${type}_$${exp} $$type $$exp >> $(RESULTS); \
+		done; \
+		echo ""                                           >> $(RESULTS); \
+	done
+	@echo "Results written to $(RESULTS)"
+
+# ── Valgrind massif on all 4 types at exponent 4 ────────────────────────────
+run_valgrind: all
+	@echo "Valgrind Massif Results" > valgrind_results.txt
+	@echo "Generated: $$(date)"   >> valgrind_results.txt
+	@echo "===================="  >> valgrind_results.txt
+	@for type in int float char string; do \
+		echo ""                                              >> valgrind_results.txt; \
+		echo "--- valgrind: $$type exp 4 ---"               >> valgrind_results.txt; \
+		valgrind --tool=massif --pages-as-heap=yes \
+		         ./BubbleMem_$${type}_4 $$type 4 \
+		         >> valgrind_results.txt 2>&1; \
+	done
+	@echo "Valgrind results written to valgrind_results.txt"
+
+clean:
+	rm -f $(TARGETS) $(RESULTS) valgrind_results.txt massif.out.*
