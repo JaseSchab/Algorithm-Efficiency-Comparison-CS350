@@ -1,5 +1,5 @@
 # An-In-Depth-Comparison-of-Efficiency-of-Various-Sorting-Algorithms
-Introduction
+**Introduction:**
 Currently, there are many proven methods of sorting a group of items programmatically. However, calculating their efficiency has mostly been reserved to theoretical runtime or space. We believe there must be more metrics and methods available that can be used  to measure the efficiency of a sorting algorithm in a more specific manner. With the new information, more insights can be made into the algorithms themselves and more informed and practical decisions can be made for which algorithm is best for which circumstances.
 
 **Method:**
