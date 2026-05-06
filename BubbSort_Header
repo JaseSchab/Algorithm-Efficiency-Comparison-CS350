@@ -1,0 +1,30 @@
+#pragma once
+//Necessary Included Libraries
+#include <iostream>
+#include <chrono>
+#include <random>
+#include <vector>
+#include <string>
+
+using namespace std;
+using namespace chrono;
+
+//Templated bubble sort function
+template <typename T>
+void bubbleSort(vector<T>& arr, int left, int right)
+{
+    int n = right - left + 1;
+    for (int i = 0; i < n - 1; i++)
+    {
+        bool swapped = false;
+        for (int j = left; j < right - i; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+        if (!swapped) break; // already sorted early exit
+    }
+}
