@@ -90,7 +90,7 @@ Our test consisted of us scaling them for the diffrent data types in this order 
 - **quicksort.h**
   - Run this for Quick Sort Testing
 
-- **bubblesort.cpp**
+- **BubbleMem.cpp**
   - Run this for Bubble Sort Testing
 
 - **bogosort.cpp**
